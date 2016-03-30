@@ -1,5 +1,6 @@
 {
   "name": "my-webpack-starter",
+  "version": "0.0.0-semantically-released",
   "description": "my webpack starter",
   "main": "index.js",
   "scripts": {
