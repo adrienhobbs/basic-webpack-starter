@@ -7,8 +7,8 @@
     "start": "webpack-dev-server -d --inline",
     "build": "webpack --config webpack-production.config.js",
     "commit": "git cz",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "mocha src/app.test.js -w"
   },
   "author": "",
   "repository": {
@@ -45,7 +45,9 @@
     "webpack-dev-server": "^1.14.1",
     "semantic-release": "^4.3.5",
     "argv": "0.0.2",
+    "chai": "^3.5.0",
     "lodash": "^4.6.1",
+    "mocha": "^2.4.5",
     "postcss-font-magician": "^1.4.0"
   },
   "config": {

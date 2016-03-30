@@ -14,3 +14,7 @@ npm start
 
 
 
+=======
+npm start 
+
+npm build
