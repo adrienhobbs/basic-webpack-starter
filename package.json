@@ -48,7 +48,9 @@
     "lodash": "^4.6.1",
     "postcss-font-magician": "^1.4.0"
   },
-  "czConfig" : {
-    "path": "node_modules/cz-conventional-changelog"
-  } 
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
 }
