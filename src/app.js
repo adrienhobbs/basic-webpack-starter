@@ -1,2 +1,2 @@
-require('./styles/style.css');
-console.log(__dirname);
+require('./styles/style.scss');
+

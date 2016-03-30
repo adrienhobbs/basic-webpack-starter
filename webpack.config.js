@@ -1,13 +1,11 @@
 var path = require('path');
+var use = require('postcss-use');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var use = require('postcss-use');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
-  output: {
-    filename: 'bundle.js'
-  },
   devtool: 'eval-source-map',
   postcss: [
     require('postcss-import')({ addDependencyTo: webpack }),
@@ -15,11 +13,19 @@ module.exports = {
     require('postcss-normalize')(),
     require('postcss-center'),
     require('postcss-cssnext')(),
+    require('postcss-font-magician')({ foundries: 'google' }),
     use({modules: ['lost']})
   ],
-  plugins: [new HtmlWebpackPlugin({
-    template: path.join(__dirname, 'src/templates/test.html')
-  })],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'src/templates/test.html',
+      filename: 'index.html',
+      inject: 'body'
+    }),
+    new ExtractTextPlugin('style.css', {allChunks: true})
+  ],
   watch: true,
   module: {
     loaders: [
@@ -35,7 +41,15 @@ module.exports = {
       {
         test: /\.css$/,
         include: path.join(__dirname, 'src/styles'),
-        loader: 'style-loader!css-loader!postcss-loader'
+        // loader: 'style-loader!css-loader!postcss-loader'
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+
+      },
+      {
+        test: /\.scss$/,
+        include: path.join(__dirname, 'src/styles'),
+        // loader: 'style-loader!css-loader!postcss-loader!sass-loader'
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
       }
     ]
   }

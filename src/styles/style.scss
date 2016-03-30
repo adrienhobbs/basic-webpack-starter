@@ -1,0 +1,13 @@
+@use lost;
+:root {
+  --color: #1B1B1A;
+}
+
+.container {
+  color: var(--color);
+  left: center;
+  top: center;
+  font-family: "PT Serif";
+  font-size: 3em;
+}
+
