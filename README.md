@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/adrienhobbs/basic-webpack-starter.svg?branch=master)](https://travis-ci.org/adrienhobbs/basic-webpack-starter)
 # basic-webpack-starter
 ======
 
@@ -14,7 +15,3 @@ npm start
 
 
 
-=======
-npm start 
-
-npm build
