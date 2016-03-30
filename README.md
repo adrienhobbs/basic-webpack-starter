@@ -1,4 +1,4 @@
 # basic-webpack-starter
-npm run start 
+npm start 
 
-npm run build
+npm build
