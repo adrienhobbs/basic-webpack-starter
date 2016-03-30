@@ -1,0 +1,17 @@
+@use lost;
+
+.container {
+  lost-flex-container: row;
+}
+
+.left {
+  background: blue;
+  height: 500px;
+  lost-column: 1/2;
+}
+
+.right {
+  background: red;
+  height: 500px;
+  lost-column: 1/2;
+}
