@@ -1,12 +1,13 @@
 {
-  "name": "hobbs-webpack-starter",
-  "version": "1.0.0",
+  "name": "my-webpack-starter",
   "description": "my webpack starter",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --inline",
     "build": "webpack --config webpack-production.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git cz",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "",
   "repository": {
@@ -40,11 +41,13 @@
     "strip-loader": "^0.1.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^1.14.1",
+    "semantic-release": "^4.3.5",
     "argv": "0.0.2",
     "lodash": "^4.6.1",
     "postcss-font-magician": "^1.4.0"
-  }
+  },
+  "czConfig" : {
+    "path": "node_modules/cz-conventional-changelog"
+  } 
 }
