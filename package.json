@@ -8,7 +8,7 @@
     "build": "webpack --config webpack-production.config.js",
     "commit": "git cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "mocha src/app.test.js -w"
+    "test": "mocha src/app.test.js"
   },
   "author": "",
   "repository": {
