@@ -1,25 +1,11 @@
 var webpack = require('webpack');
+var templates = require('./get-all-templates.js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var devConfig = require('./webpack.config.js');
+var prodConfig = require('./webpack.config.js');
 var _ = require('lodash');
 var path = require('path');
 
-devConfig.output = {
-  filename: '[name].js',
-  path: path.join(__dirname, 'build'),
-  publicPath: ''
-};
-
-devConfig.watch = false;
-
-devConfig.plugins = [
-  new HtmlWebpackPlugin({
-    minify: {collapseWhitespace: false},
-    inject: 'body',
-    template: 'src/templates/test.html',
-    filename: 'index.html'
-  }),
+var prodPlugins = templates.concat([
   new ExtractTextPlugin('[name].[contenthash].css', {allChunks: true}),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.DedupePlugin(),
@@ -30,13 +16,23 @@ devConfig.plugins = [
       warnings: false
     }
   })
-];
+]);
 
-_.forEach(devConfig.module.loaders, function (loader, i) {
+prodConfig.output = {
+  filename: '[name].js',
+  path: path.join(__dirname, 'build'),
+  publicPath: ''
+};
+
+prodConfig.watch = false;
+
+prodConfig.plugins = prodPlugins;
+
+_.forEach(prodConfig.module.loaders, function (loader, i) {
   var testFileType = loader.test.toString();
   if (testFileType.includes('css')) {
     loader.loader = ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader');
   }
 });
 
-module.exports = devConfig;
+module.exports = prodConfig;

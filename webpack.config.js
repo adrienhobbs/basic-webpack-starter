@@ -1,10 +1,16 @@
+var templates = require('./get-all-templates.js');
 var path = require('path');
 var use = require('postcss-use');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+var devPlugins = templates.concat([
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin(),
+  new ExtractTextPlugin('style.css', {allChunks: true})
+]);
+
+var webpackDevConfig = {
   entry: './src/app.js',
   devtool: 'eval-source-map',
   postcss: [
@@ -16,16 +22,7 @@ module.exports = {
     require('postcss-font-magician')({ foundries: 'google' }),
     use({modules: ['lost']})
   ],
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/templates/test.html',
-      filename: 'index.html',
-      inject: 'body'
-    }),
-    new ExtractTextPlugin('style.css', {allChunks: true})
-  ],
+  plugins: devPlugins,
   watch: true,
   module: {
     loaders: [
@@ -54,3 +51,5 @@ module.exports = {
     ]
   }
 };
+
+module.exports = webpackDevConfig;
