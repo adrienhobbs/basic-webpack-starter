@@ -8,7 +8,8 @@
     "build": "webpack --config webpack-production.config.js",
     "commit": "git cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "mocha src/app.test.js"
+    "test": "mocha src/app.test.js -w",
+    "test:single": "mocha src/app.test.js"
   },
   "author": "",
   "repository": {
@@ -53,6 +54,9 @@
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run test:single"
     }
   }
 }
