@@ -20,6 +20,7 @@ var webpackDevConfig = {
     require('postcss-center'),
     require('postcss-cssnext')(),
     require('postcss-font-magician')({ foundries: 'google' }),
+    require('postcss-reporter'),
     use({modules: ['lost']})
   ],
   plugins: devPlugins,
@@ -38,14 +39,12 @@ var webpackDevConfig = {
       {
         test: /\.css$/,
         include: path.join(__dirname, 'src/styles'),
-        // loader: 'style-loader!css-loader!postcss-loader'
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
 
       },
       {
         test: /\.scss$/,
         include: path.join(__dirname, 'src/styles'),
-        // loader: 'style-loader!css-loader!postcss-loader!sass-loader'
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
       }
     ]

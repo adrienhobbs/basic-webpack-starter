@@ -27,7 +27,6 @@ prodConfig.output = {
 prodConfig.watch = false;
 
 prodConfig.plugins = prodPlugins;
-
 _.forEach(prodConfig.module.loaders, function (loader, i) {
   var testFileType = loader.test.toString();
   if (testFileType.includes('css')) {

@@ -58,5 +58,8 @@
     "ghooks": {
       "pre-commit": "npm run test:single"
     }
+  },
+  "dependencies": {
+    "postcss-reporter": "^1.3.3"
   }
 }
